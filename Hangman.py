@@ -1,6 +1,5 @@
 #Author: Amritansh Gupta
 #Date: 11/13/18
-#Hulu Internship Challenge
 import requests
 from collections import defaultdict
 import string
@@ -184,7 +183,7 @@ while True:
         time.sleep(3)
 
         #requesting a Game
-        request = requests.get('http://gallows.hulu.com/play?code=amritanshgupta@gmail.com').json()
+        request = requests.get('http://hangman-api.herokuapp.com/hangman').json()
         print("Begin:",request['state'],"\n")
 
         game = Game(request['state'], request['token'])
@@ -201,8 +200,8 @@ while True:
             print("Guessing ", guess)
 
             params = {'token': game.token,
-                      'guess':guess}
-            play = requests.post(url='http://gallows.hulu.com/play?code=amritanshgupta@gmail.com',data=params).json()
+                      'letter':guess}
+            play = requests.post(url='http://hangman-api.herokuapp.com/hangman',data=params).json()
 
             print(play['state'], "Chances left:", play['remaining_guesses'])
 
